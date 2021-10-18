@@ -1,10 +1,6 @@
 [
     {
         "username": "asdf",
-        "password": "asdf"
-    },
-    {
-        "username": "asdf1",
-        "password": "asdf"
+        "password": "$2b$12$jftVxpxHIjHg79Q3GGQVjuiDQRMMcYP1PA/PR5319ZvjqWk03gv2G"
     }
 ]

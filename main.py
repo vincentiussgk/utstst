@@ -1,7 +1,7 @@
 import json
 from fastapi import FastAPI, HTTPException, Depends, Body
 from auth.auth_handler import signJWT
-from auth.helpers import check_user
+from auth.helpers import check_user, get_password_hash, verify_password
 from auth.auth_bearer import JWTBearer
 
 with open("menu.json", "r+") as read_file:
@@ -59,7 +59,7 @@ async def update_menu(item_id: int, item_name: str):
 def create_user(username: str, password: str):
     creds = {
         "username": username, 
-        "password": password
+        "password": get_password_hash(password)
     }
     if not (check_user(userData, creds)):
         userData.append(creds)
