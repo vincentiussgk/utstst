@@ -13,8 +13,19 @@ def verify_password(plain_password, hashed_password):
     return pwd_context.verify(plain_password, hashed_password)
 
 # Check if user exists
-def check_user(userData, creds):
+def user_exists(userData, name):
     for user in userData:
-        if verify_password(creds["password"], user["password"]) and user["username"] == creds["username"]:
-            return True
+        if user["username"] == name:
+            return user
     return False
+
+# Check if user exists & login data matches
+def check_user(userData, creds):
+    user = user_exists(userData, creds["username"])
+    if (user == False):
+        return 404
+    else:
+        if (verify_password(creds["password"], user["password"])):
+            return 200
+        else:
+            return 403

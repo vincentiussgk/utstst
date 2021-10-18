@@ -1,7 +1,7 @@
 import json
 from fastapi import FastAPI, HTTPException, Depends, Body
 from auth.auth_handler import signJWT
-from auth.helpers import check_user, get_password_hash, verify_password
+from auth.helpers import check_user, get_password_hash, user_exists, verify_password
 from auth.auth_bearer import JWTBearer
 
 with open("menu.json", "r+") as read_file:
@@ -61,7 +61,7 @@ def create_user(username: str, password: str):
         "username": username, 
         "password": get_password_hash(password)
     }
-    if not (check_user(userData, creds)):
+    if not (user_exists(userData, username)):
         userData.append(creds)
         with open ("users.json", "w") as user_file:       
             json.dump(userData, user_file, indent=4)
@@ -76,7 +76,12 @@ def login (username: str, password: str):
         "username": username, 
         "password": password
     }
-    if (check_user(userData, creds)):
+    checkUser = check_user(userData, creds)
+    print(check_user)
+    if (checkUser == 200):
         return signJWT(username)
+    elif (checkUser == 403):
+        raise HTTPException(status_code=403, detail=f'Wrong password.')
     else:
         raise HTTPException(status_code=404, detail=f'User not found.')
+        

@@ -2,5 +2,9 @@
     {
         "username": "asdf",
         "password": "$2b$12$jftVxpxHIjHg79Q3GGQVjuiDQRMMcYP1PA/PR5319ZvjqWk03gv2G"
+    },
+    {
+        "username": "asdf2",
+        "password": "$2b$12$c0wU6gW0ytQAulMLnZDbout4wnCLLvPjWJiy09n3rR3D0jQDb6G2i"
     }
 ]

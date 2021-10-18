@@ -10,7 +10,11 @@
         },
         {
             "id": 3,
-            "name": "daging"
+            "name": "test123"
+        },
+        {
+            "id": 4,
+            "name": "Testing1234567"
         }
     ]
 }
